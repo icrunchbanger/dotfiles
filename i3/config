@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:Product Sans 10
+font pango:SF Pro Display 10
 
 floating_modifier $mod
 
