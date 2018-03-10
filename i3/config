@@ -212,6 +212,7 @@ bindsym XF86Sleep exec blurlock
 exec --no-startup-id nitrogen --restore; sleep 1;
 exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
 exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 15 -locker "systemctl suspend"
 exec --no-startup-id numlockx 
 exec --no-startup-id megasync
 exec --no-startup-id clipit
