@@ -77,7 +77,7 @@ set $workspace0 "0:MISC "
 
 
 # open applications on specific workspaces
-assign [class="Urxvt"] $workspace1
+assign [class="URxvt"] $workspace1
 assign [class="Chromium"] $workspace2
 assign [class="Pcmanfm"] $workspace3
 assign [class="Geany"] $workspace4
@@ -92,7 +92,7 @@ bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
 bindsym $mod+0 workspace $workspace0
 
-for_window [class="^Urxvt$"] focus
+for_window [class="^URxvt$"] focus
 for_window [class="^Chromium$"] focus
 for_window [class="^Pcmanfm$"] focus
 for_window [class="^Geany$"] focus
