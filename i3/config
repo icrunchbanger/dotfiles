@@ -203,4 +203,3 @@ exec --no-startup-id xautolock -time 20 -locker blurlock
 exec --no-startup-id xautolock -time 45 -locker "systemctl suspend"
 exec --no-startup-id numlockx 
 exec --no-startup-id megasync
-exec --no-startup-id clipit
