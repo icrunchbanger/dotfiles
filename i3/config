@@ -24,13 +24,7 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+odiaeresis move right
-
-# alternatively, you can use the cursor keys:
+# move focused window:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -66,27 +60,24 @@ set $workspace1 "1:Terminal "
 set $workspace2 "2:Web "
 set $workspace3 "3:File Manager "
 set $workspace4 "4:Geany "
-set $workspace5 "5:Audacious "
-set $workspace6 "6:MPV "
-set $workspace7 "7:Game "
+set $workspace6 "5:MPV "
+set $workspace7 "6:Game "
 set $workspace0 "0:MISC "
 
 
 
 # open applications on specific workspaces
-assign [class="URxvt"] $workspace1
+assign [class="URxvt"] 	  $workspace1
 assign [class="Chromium"] $workspace2
-assign [class="Pcmanfm"] $workspace3
-assign [class="Geany"] $workspace4
-assign [class="Audacious"] $workspace5
-assign [class="MISC"] $workspace0
+assign [class="Pcmanfm"]  $workspace3
+assign [class="Geany"] 	  $workspace4
+assign [class="MISC"] 	  $workspace0
 
 # switch to workspace
-bindsym $mod+1 workspace  $workspace1
+bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
 bindsym $mod+0 workspace $workspace0
 
 for_window [class="^URxvt$"] focus
@@ -117,15 +108,15 @@ mode "resize" {
 }
 
 # define colors used
-set $bg-color 	         					#2f343f
-set $inactive-bg-color   				#2f343f
-set $text-color          					#f3f4f5
-set $inactive-text-color 				#676E7D
-set $urgent-bg-color    				#5294e2
+set $bg-color 	         	#2f343f
+set $inactive-bg-color   	#2f343f
+set $text-color          	#f3f4f5
+set $inactive-text-color 	#676E7D
+set $urgent-bg-color    	#5294e2
 
-# windows         		Border     	Background    	Text    		 Indicator
+# windows         		Border     		Background    		Text    		 Indicator
 client.focused    		#1793d1  		#1793d1      		#ffffff	
-client.unfocused  	#2f343f   	#2f343f      		#ffffff
+client.unfocused  		#2f343f   	 	#2f343f      		#ffffff
 
 # windows starting in floating mode
 for_window [class="Lxappearance"] floating enable border normal
@@ -146,13 +137,13 @@ bindsym Mod1+Shift+Print exec scrot -s $HOME/Pictures/Screenshots/`date +%Y-%m-%
 bar {
   status_command i3blocks  -c  ~/.config/i3/i3blocks.conf
 	colors {
-		background 				$bg-color
-	    separator 					#757575
-		#                   				border     	background 	text
-		focused_workspace  	#008fff 		#007fff 			#ffffff
-		active_workspace   		#333333 	 	#5f676a 			#ffffff
-		inactive_workspace 		#333333 		#222222 			#888888
-		urgent_workspace   	#aa0000	 	#990000 		#ffffff
+		background 		$bg-color
+	    	separator 		#757575
+		#                   	border     	background 	text
+		focused_workspace  	#008fff 	#007fff 	#ffffff
+		active_workspace   	#333333 	#5f676a 	#ffffff
+		inactive_workspace 	#333333 	#222222 	#888888
+		urgent_workspace   	#aa0000	 	#990000 	#ffffff
 
 	}
 }
@@ -168,7 +159,7 @@ smart_borders on
 bindsym $mod+Delete mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-			bindsym l exec --no-startup-id i3exit lock, mode "default"
+           		bindsym l exec --no-startup-id i3exit lock, mode "default"
 			bindsym s exec --no-startup-id i3exit suspend, mode "default"
 			bindsym u exec --no-startup-id i3exit switch_user, mode "default"
 			bindsym e exec --no-startup-id i3exit logout, mode "default"
