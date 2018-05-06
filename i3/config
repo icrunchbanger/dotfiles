@@ -82,7 +82,7 @@ assign [class="Audacious"] $workspace5
 assign [class="MISC"] $workspace0
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
+bindsym $mod+1 workspace  $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
@@ -107,42 +107,28 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym odiaeresis resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+			bindsym Left resize shrink width 5 px or 5 ppt
+			bindsym Down resize grow height 5 px or 5 ppt
+			bindsym Up resize shrink height 5 px or 5 ppt
+			bindsym Right resize grow width 5 px or 5 ppt
+        
+			bindsym Return mode "default"
+			bindsym Escape mode "default"
 }
 
 # define colors used
-set $bg-color 	         		#2f343f
-set $inactive-bg-color   		#2f343f
-set $text-color          		#f3f4f5
-set $inactive-text-color 		#676E7D
-set $urgent-bg-color    		#5294e2
+set $bg-color 	         					#2f343f
+set $inactive-bg-color   				#2f343f
+set $text-color          					#f3f4f5
+set $inactive-text-color 				#676E7D
+set $urgent-bg-color    				#5294e2
 
-# windows         	Border    	Background    Text     Indicator
-client.focused    	#1793d1  	#1793d1       #ffffff
-client.unfocused  	#2f343f   	#2f343f       #ffffff
+# windows         		Border     	Background    	Text    		 Indicator
+client.focused    		#1793d1  		#1793d1      		#ffffff	
+client.unfocused  	#2f343f   	#2f343f      		#ffffff
 
 # windows starting in floating mode
 for_window [class="Lxappearance"] floating enable border normal
-for_window [class="Xsensors"] floating enable
 for_window [class="Audacious"] floating enable border normal
 for_window [class="Mpv"] floating enable border normal
 
@@ -160,13 +146,13 @@ bindsym Mod1+Shift+Print exec scrot -s $HOME/Pictures/Screenshots/`date +%Y-%m-%
 bar {
   status_command i3blocks  -c  ~/.config/i3/i3blocks.conf
 	colors {
-		background 			$bg-color
-	    separator 			#757575
-		#                   border    	background 	 	text
+		background 				$bg-color
+	    separator 					#757575
+		#                   				border     	background 	text
 		focused_workspace  	#008fff 		#007fff 			#ffffff
-		active_workspace    #333333 	#5f676a 		#ffffff
-		inactive_workspace 	#333333 	#222222 		#888888
-		urgent_workspace   	#aa0000 	#990000 		#ffffff
+		active_workspace   		#333333 	 	#5f676a 			#ffffff
+		inactive_workspace 		#333333 		#222222 			#888888
+		urgent_workspace   	#aa0000	 	#990000 		#ffffff
 
 	}
 }
@@ -182,17 +168,16 @@ smart_borders on
 bindsym $mod+Delete mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+			bindsym l exec --no-startup-id i3exit lock, mode "default"
+			bindsym s exec --no-startup-id i3exit suspend, mode "default"
+			bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+			bindsym e exec --no-startup-id i3exit logout, mode "default"
+			bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+			bindsym r exec --no-startup-id i3exit reboot, mode "default"
+			bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+			bindsym Return mode "default"
+			bindsym Escape mode "default"
 }
 bindsym XF86Sleep exec blurlock
 
@@ -201,5 +186,6 @@ exec --no-startup-id nitrogen --restore; sleep 1;
 exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
 exec --no-startup-id xautolock -time 20 -locker blurlock
 exec --no-startup-id xautolock -time 45 -locker "systemctl suspend"
+exec --no-startup-id dunst 
 exec --no-startup-id numlockx 
 exec --no-startup-id megasync
