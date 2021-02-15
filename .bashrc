@@ -50,7 +50,7 @@ cPWD=$BLUE # Color of current directory
 cCMD=$DEFAULT # Color of the command you type
 
 # Enable block
-eNL=1  # Have a newline between previous command output and new prompt
+eNL=0  # Have a newline between previous command output and new prompt
 eERR=1 # Previous command return status tracker
 eTIME=1 # Enable time display
 eMPX=1 # Terminal multiplexer tracker enabled
