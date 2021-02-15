@@ -111,8 +111,8 @@ for_window [class="Audacious"] floating enable border normal
 for_window [class="Mpv"] floating enable border normal
 
 ## brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec sudo xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec sudo xbacklight -dec 10
 
 # volume control
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
