@@ -1,6 +1,6 @@
+#!/bin/bash
 [[ $- != *i* ]] && return
 
-#!/bin/bash
 ##########################################################
 #Please edit "User Configuration" section before using   #
 ##########################################################
@@ -112,7 +112,7 @@ function promptcmd()
         #=========================================================
         if [ $eERR -eq 1 ]; then
                 if [ $PREVRET -ne 0 ] ; then
-                        PS1="${PS1}${cBRACKETS}[${cERROR}:(${cBRACKETS}]${cLINES}\342\224\200"
+                        PS1="${PS1}${cBRACKETS}[${cERROR}!${cBRACKETS}]${cLINES}\342\224\200"
                 else
                         PS1="${PS1}${cBRACKETS}[${cSUCCESS}$(parse_git_branch)${cBRACKETS}]${cLINES}\342\224\200"
                 fi
