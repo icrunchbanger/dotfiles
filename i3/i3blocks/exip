@@ -1,0 +1,4 @@
+#!/bin/bash
+
+IP=$(curl ifconfig.me/ip)
+echo $IP

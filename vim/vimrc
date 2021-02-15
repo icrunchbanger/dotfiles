@@ -1,0 +1,20 @@
+let rtp=&runtimepath
+set viminfo+=n/home/$USER/.config/vim/viminfo
+set runtimepath+=/home/$USER/.config/vim/
+set directory=/home/$USER/.config/vim/swap//
+set backupdir=/home/$USER/.config/vim/backup//
+set undodir=/home/$USER/.config/vim/undo//
+
+set cursorline  
+set showcmd     
+set number 
+set wildmenu 
+set showmatch  
+set incsearch
+set hlsearch
+
+" Colors {{{
+syntax enable           " enable syntax processing
+colorscheme badwolf
+set termguicolors
+" }}}

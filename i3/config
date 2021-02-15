@@ -1,16 +1,14 @@
 set $mod Mod4
 
-font pango:SF Pro Display 10
+font pango:Terminus Bold 11.3
 
 floating_modifier $mod
-
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
-
+# start dmenu (a program launcher
+bindsym $mod+d exec dmenu_run
 
 # change focus
 bindsym $mod+Left focus left
@@ -50,20 +48,18 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
-set $workspace1 "1:Terminal "
-set $workspace2 "2:Web "
-set $workspace3 "3:File Manager "
-set $workspace4 "4:Geany "
-set $workspace6 "5:MPV "
-set $workspace7 "6:Game "
-set $workspace0 "0:MISC "
+set $workspace1 " 1:Terminal  "
+set $workspace2 " 2:Firefox  "
+set $workspace3 " 3:PcmanFM  "
+set $workspace4 " 4:Geany  "
+set $workspace0 " 0:MISC  "
 
 # open applications on specific workspaces
-assign [class="URxvt"] 	  $workspace1
-assign [class="Chromium"] $workspace2
-assign [class="Pcmanfm"]  $workspace3
-assign [class="Geany"] 	  $workspace4
-assign [class="MISC"] 	  $workspace0
+assign [class="Alacritty"]    $workspace1
+assign [class="firefox"]      $workspace2
+assign [class="Pcmanfm"]      $workspace3
+assign [class="Geany"] 	      $workspace4
+assign [class="MISC"] 	      $workspace0
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -72,103 +68,105 @@ bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+0 workspace $workspace0
 
-for_window [class="^URxvt$"] focus
-for_window [class="^Chromium$"] focus
+for_window [class="^Alacritty$"] focus
+for_window [class="^firefox"] focus
 for_window [class="^Pcmanfm$"] focus
 for_window [class="^Geany$"] focus
 
-bindsym $mod+Return workspace 1; exec urxvt
-bindsym $mod+b workspace 2; exec chromium
+bindsym $mod+Return workspace 1; exec alacritty
+bindsym $mod+b workspace 2; exec firefox
 bindsym $mod+p workspace 3; exec pcmanfm
 bindsym $mod+g workspace 4; exec geany
-bindsym $mod+r mode "resize"
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-#bindsym $mod+Shift+e exec ./config/i3/scripts/i3-exit
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-			bindsym Left resize shrink width 5 px or 5 ppt
-			bindsym Down resize grow height 5 px or 5 ppt
-			bindsym Up resize shrink height 5 px or 5 ppt
-			bindsym Right resize grow width 5 px or 5 ppt
-        
-			bindsym Return mode "default"
-			bindsym Escape mode "default"
-}
+#clipmenu search and clear
+bindsym $mod+c exec clipmenuds show
+bindsym $mod+Mod1+c exec --no-startup-id clipmenuds clean
+
+
+# resize window
+bindsym $mod+Ctrl+Right resize shrink width 5 px or 5 ppt
+bindsym $mod+Ctrl+Up resize grow height 5 px or 5 ppt
+bindsym $mod+Ctrl+Down resize shrink height 5 px or 5 ppt
+bindsym $mod+Ctrl+Left resize grow width 5 px or 5 ppt
 
 # define colors used
-set $bg-color 	         	#2f343f
-set $inactive-bg-color   	#2f343f
-set $text-color          	#f3f4f5
-set $inactive-text-color 	#676E7D
-set $urgent-bg-color    	#5294e2
+set $bg-color 	         	#0F1212
+set $inactive-bg-color   	#685742
+set $text-color          	#9D6A47
+set $inactive-text-color 	#B36D43
+set $urgent-bg-color    	#78824B
 
 # windows         		Border     		Background    		Text    		 Indicator
-client.focused    		#1793d1  		#1793d1      		#ffffff	
-client.unfocused  		#2f343f   	 	#2f343f      		#ffffff
+client.focused    		#1d1f21  		#707880      		#ffffff	
+client.unfocused  		#2f343f   	 	#0F1212      		#ffffff
 
 # windows starting in floating mode
 for_window [class="Lxappearance"] floating enable border normal
 for_window [class="Audacious"] floating enable border normal
 for_window [class="Mpv"] floating enable border normal
 
+## brightness control
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
 # volume control
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # screenshot
-bindsym Print exec scrot $HOME/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
-bindsym Mod1+Print exec scrot -u $HOME/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
-bindsym Mod1+Shift+Print exec scrot -s $HOME/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
-
+bindsym Print exec "maim ~/Pictures/Screenshots/$(date +%Y%m%d%H%M%S).png | maim /dev/stdout | xclip -selection clipboard -t image/png -i"
+bindsym $mod+Print exec "maim -s /dev/stdout | xclip -selection clipboard -t image/png -i ; \
+        maim -s | convert - \( +clone -background black -shadow 80x3+5+5 \) +swap \
+        -background none -layers merge +repage ~/Pictures/Screenshots/$(date +%Y%m%d%H%M%S).png"
+        
 # i3 status
 bar {
   status_command i3blocks  -c  ~/.config/i3/i3blocks.conf
 	colors {
 		background 		$bg-color
-	    	separator 		#757575
-		#                   	border     	background 	text
-		focused_workspace  	#008fff 	#007fff 	#ffffff
-		active_workspace   	#333333 	#5f676a 	#ffffff
-		inactive_workspace 	#333333 	#222222 	#888888
-		urgent_workspace   	#aa0000	 	#990000 	#ffffff
+	    separator 	    	#757575
+		#                   border     	background 	text
+		focused_workspace  	#d3d7cf	    #707880 	#ffffff
+		active_workspace   	#EAD49B 	#5f676a 	#ffffff
+		inactive_workspace 	#666666 	#222222 	#888888
+		urgent_workspace   	#685743	 	#990000 	#ffffff
 
 	}
 }
 
 # i3 gaps
 for_window [class="^.*"] border pixel 1
-gaps inner 20
-gaps outer -4
+gaps inner 5
+gaps outer -1
 smart_gaps on
 smart_borders on
 
 # shut down, restart and locking features
 bindsym $mod+Delete mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-           		bindsym l exec --no-startup-id i3exit lock, mode "default"
+           	bindsym l exec --no-startup-id i3exit lock, mode "default"
 			bindsym s exec --no-startup-id i3exit suspend, mode "default"
 			bindsym u exec --no-startup-id i3exit switch_user, mode "default"
 			bindsym e exec --no-startup-id i3exit logout, mode "default"
-			bindsym h exec --no-startup-id i3exit hibernate, mode "default"
 			bindsym r exec --no-startup-id i3exit reboot, mode "default"
-			bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+			bindsym Shift+s exec --no-startup-id  i3exit shutdown, mode "default"
 
 			bindsym Return mode "default"
 			bindsym Escape mode "default"
 }
-bindsym XF86Sleep exec blurlock
 
 # autostarted applications
-exec --no-startup-id nitrogen --restore; sleep 1;
-exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
-exec --no-startup-id xautolock -time 20 -locker blurlock
-exec --no-startup-id xautolock -time 45 -locker "systemctl suspend"
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id sleep 5; systemctl --user import-environment DISPLAY
+exec --no-startup-id sleep 10; systemctl --user start clipmenud
+exec --no-startup-id nitrogen --restore; sleep 3;
+exec --no-startup-id picom --config /home/$USER/.config/picom/picom.conf -b
 exec --no-startup-id dunst 
-exec --no-startup-id numlockx 
-exec --no-startup-id megasync
+exec --no-startup-id nm-applet
+exec --no-startup-id xautolock -detectsleep -time 15 -locker i3locker -notify 60 -notifier "notify-send -u critical -t 30000 -- 'Locking in 1m!'"

@@ -1,0 +1,2 @@
+0 11 * * * bash /usr/local/maldetect/maldet -d -u > /dev/null 2>&1
+0 12 * * * bash /usr/local/maldetect/maldet -b -r /home/ 1 > /dev/null 2>&1
