@@ -322,7 +322,7 @@ alias ocperms='stat -c "%A %a %n" $1'
 
 ## network ##
 alias lip='hostname -i'
-alias xip='curl ifconfig.me'
+alias xip='curl -s ifconfig.me -w "\n"'
 
 ## termbin paste ##
 alias tb='nc termbin.com 9999'
