@@ -1,7 +1,7 @@
 #!/bin/bash
 [[ $- != *i* ]] && return
 
-source $HOME/.config/bash/gitstatus/gitstatus.prompt.sh
+source $HOME/.config/bash/git-status/gitstatus.prompt.sh
 PS1="┌(\${GITSTATUS_PROMPT})-(\e[31m\u@\h\e[m)-(\@)-(\e[94m\w\e[39m)\n└─[> "
 
 export EDITOR=nvim
