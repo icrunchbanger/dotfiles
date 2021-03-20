@@ -4,11 +4,9 @@
 source $HOME/.config/bash/git-status/gitstatus.prompt.sh
 PS1="┌─[\[\e[36m\]\u\[\e[m\]@\[\e[31m\]\h\[\e[m\]]-[\A]-[\[\e[35m\]\w\[\e[m\]] \${GITSTATUS_PROMPT} \n└─[> "
 
-
-export EDITOR=nvim
-export VISUAL=nvim
-alias  vim='nvim'
-#export NEOVIMINIT="source /home/$USER/.config/nvim/vimrc"
+export EDITOR=vim
+export VISUAL=vim
+export NVIMINIT="source /home/$USER/.config/vim/vimrc"
 
 export PATH=$PATH:/home/$USER/.local/bin
 
@@ -23,13 +21,6 @@ alias portss='ss -tulanp'
 
 ## shortcut  for iptables and pass it via sudo#
 alias ipt='sudo /sbin/iptables'
- 
-# display all rules #
-alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
-alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
-alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
-alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
-alias firewall=iptlist
 
 # get web server headers #
 alias header='curl -I'
@@ -189,12 +180,3 @@ up()
     fi
     cd "$dir";
 }
-
-#vim()
-#{
-#   if [ -x "$(command -v nvim)" ]; then
-#	exec nvim "$1";
-#   else
-#        exec vim "$1"
-#   fi
-#}
