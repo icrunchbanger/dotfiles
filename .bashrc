@@ -19,14 +19,8 @@ alias bc='bc -l'
 alias ports='netstat -tulanp'
 alias portss='ss -tulanp'
 
-## shortcut  for iptables and pass it via sudo#
-alias ipt='sudo /sbin/iptables'
-
 # get web server headers #
 alias header='curl -I'
- 
-# find out if remote server supports gzip / mod_deflate or not #
-alias headerc='curl -I --compress'
 
 ## colorize commands output for ease of use ##
 alias diff='colordiff'
