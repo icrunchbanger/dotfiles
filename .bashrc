@@ -6,7 +6,7 @@ PS1="┌─[\[\e[36m\]\u\[\e[m\]@\[\e[31m\]\h\[\e[m\]]-[\A]-[\[\e[35m\]\w\[\e[m\
 
 export EDITOR=vim
 export VISUAL=vim
-export NVIMINIT="source /home/$USER/.config/vim/vimrc"
+export VIMINIT="source /home/$USER/.config/vim/vimrc"
 
 export PATH=$PATH:/home/$USER/.local/bin
 
